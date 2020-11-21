@@ -5,11 +5,16 @@ import './App.css'
 import questions from './questions'
 
 class App extends React.Component {
+  constructor () {
+    super()
+    this.state = { questionIndex: 0 }
+  }
+
   render () {
     return (<div className='App'>
-      <div>Question 16 of 20</div>
+      <div>Question {this.state.questionIndex + 1} of {questions.length}</div>
       <QuizItem
-        questionJson={questions[0]}
+        questionJson={questions[this.state.questionIndex]}
       />
     </div>)
   }

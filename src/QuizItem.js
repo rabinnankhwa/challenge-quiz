@@ -1,6 +1,18 @@
 import React from 'react'
 
 class QuizItem extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      completed: false,
+      correct: false
+    }
+  }
+
+  handleAnswerClick (correctValue) {
+    this.setState({ completed: true, correct: correctValue })
+  }
+
   render () {
     const { questionJson } = this.props
     const question = decodeURIComponent(questionJson.question)
@@ -10,10 +22,17 @@ class QuizItem extends React.Component {
       <>
         <div>Entertainment: Board Games</div>
         <div>{question}</div>
-        <button>{correctAns}</button>
-        <button>{answers[0]}</button>
-        <button>{answers[1]}</button>
-        <button>{answers[2]}</button>
+        <button onClick={() => this.handleAnswerClick(true)}>{correctAns}</button>
+        <button onClick={() => this.handleAnswerClick(false)}>{answers[0]}</button>
+        <button onClick={() => this.handleAnswerClick(false)}>{answers[1]}</button>
+        <button onClick={() => this.handleAnswerClick(false)}>{answers[2]}</button>
+        <div>
+          {this.state.completed && this.state.correct && <b>Correct!</b>}
+          {this.state.completed && !this.state.correct && <b>Sorry!</b>}
+        </div>
+        <div>
+          {this.state.completed && <button>Next Question</button>}
+        </div>
       </>
     )
   }
