@@ -1,6 +1,13 @@
 import React from 'react'
+import StarRatings from 'react-star-ratings'
 
 import './QuizItem.css'
+
+const RATING_MAP = {
+  easy: 1,
+  medium: 2,
+  hard: 3
+}
 
 class QuizItem extends React.Component {
   constructor (props) {
@@ -25,6 +32,12 @@ class QuizItem extends React.Component {
     return (
       <>
         <div className='category'>{category}</div>
+        <StarRatings
+          rating={RATING_MAP[questionJson.difficulty]}
+          starDimension='10px'
+          starRatedColor='black'
+          starSpacing='1px'
+        />
         <div>{question}</div>
         <button onClick={() => this.handleAnswerClick(true)}>{correctAns}</button>
         <button onClick={() => this.handleAnswerClick(false)}>{answers[0]}</button>
