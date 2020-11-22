@@ -8,6 +8,12 @@
   margin-bottom: 30px;
 }
 
+.result-message {
+  align-self: center;
+  margin-top: 32px;
+  font-size: 32px;
+}
+
 .next-question {
   align-self: center;
   margin-top: 32px;

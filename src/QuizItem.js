@@ -43,7 +43,7 @@ class QuizItem extends React.Component {
         <button onClick={() => this.handleAnswerClick(false)}>{answers[0]}</button>
         <button onClick={() => this.handleAnswerClick(false)}>{answers[1]}</button>
         <button onClick={() => this.handleAnswerClick(false)}>{answers[2]}</button>
-        <div>
+        <div className='result-message'>
           {this.state.completed && this.state.correct && <b>Correct!</b>}
           {this.state.completed && !this.state.correct && <b>Sorry!</b>}
         </div>
