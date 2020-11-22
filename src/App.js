@@ -14,6 +14,7 @@ class App extends React.Component {
     super()
     this.state = {
       dataLoaded: false,
+      currentCompleted: false,
       correctCount: 0,
       questionIndex: 0
     }
@@ -25,18 +26,25 @@ class App extends React.Component {
     this.setState({ dataLoaded: true })
   }
 
-  handleCorrect () {
-    this.setState({ correctCount: this.state.correctCount + 1 })
+  handleAnswer (value) {
+    this.setState({
+      correctCount: this.state.correctCount + value.correct,
+      currentCompleted: true
+    })
   }
 
   handleNext () {
-    this.setState({ questionIndex: this.state.questionIndex + 1 })
+    this.setState({
+      questionIndex: this.state.questionIndex + 1,
+      currentCompleted: false
+    })
   }
 
   render () {
     const {
       dataLoaded,
       correctCount,
+      currentCompleted,
       questionIndex
     } = this.state
     if (!dataLoaded) return (<div>Loading...</div>)
@@ -45,7 +53,7 @@ class App extends React.Component {
     if (questionIndex >= questions.length) return (<div>Quiz Completed!</div>)
 
     const actualScore = correctCount
-    const completed = questionIndex + 1
+    const completed = questionIndex + currentCompleted
     const incorrectAnswers = completed - actualScore
     const maximumScore = questions.length - incorrectAnswers
 
@@ -65,7 +73,7 @@ class App extends React.Component {
         <QuizItem
           questionJson={questions[questionIndex]}
           handleNext={() => this.handleNext()}
-          handleCorrect={() => this.handleCorrect()}
+          handleAnswer={(value) => this.handleAnswer(value)}
         />
         <div style={{ display: 'flex', marginTop: 'auto' }}>
           <div>Score: {minPossibleScore}%</div>

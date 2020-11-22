@@ -34,7 +34,7 @@ class QuizItem extends React.Component {
   }
 
   handleAnswerClick (value) {
-    if (value.correct) this.props.handleCorrect()
+    this.props.handleAnswer(value)
     this.setState({ completed: true, correct: value.correct })
   }
 
