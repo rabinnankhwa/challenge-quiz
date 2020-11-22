@@ -3,6 +3,8 @@ import StarRatings from 'react-star-ratings'
 
 import './QuizItem.css'
 
+import { getAnswersList } from './utils'
+
 const RATING_MAP = {
   easy: 1,
   medium: 2,
@@ -18,17 +20,16 @@ class QuizItem extends React.Component {
     }
   }
 
-  handleAnswerClick (correctValue) {
-    if (correctValue) this.props.handleCorrect()
-    this.setState({ completed: true, correct: correctValue })
+  handleAnswerClick (value) {
+    if (value.correct) this.props.handleCorrect()
+    this.setState({ completed: true, correct: value.correct })
   }
 
   render () {
     const { questionJson } = this.props
     const category = decodeURIComponent(questionJson.category)
     const question = decodeURIComponent(questionJson.question)
-    const correctAns = decodeURIComponent(questionJson.correct_answer)
-    const answers = questionJson.incorrect_answers.map(ans => decodeURIComponent(ans))
+    const answersList = getAnswersList(questionJson)
     return (
       <>
         <div className='category'>{category}</div>
@@ -39,10 +40,11 @@ class QuizItem extends React.Component {
           starSpacing='1px'
         />
         <div className='question'>{question}</div>
-        <button onClick={() => this.handleAnswerClick(true)}>{correctAns}</button>
-        <button onClick={() => this.handleAnswerClick(false)}>{answers[0]}</button>
-        <button onClick={() => this.handleAnswerClick(false)}>{answers[1]}</button>
-        <button onClick={() => this.handleAnswerClick(false)}>{answers[2]}</button>
+        { answersList.map((value) => (
+          <button key={value.data} onClick={() => this.handleAnswerClick(value)}>
+            {decodeURIComponent(value.data)}
+          </button>
+        ))}
         <div className='result-message'>
           {this.state.completed && this.state.correct && <b>Correct!</b>}
           {this.state.completed && !this.state.correct && <b>Sorry!</b>}
