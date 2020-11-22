@@ -49,6 +49,12 @@ class App extends React.Component {
           handleNext={() => this.handleNext()}
           handleCorrect={() => this.handleCorrect()}
         />
+        <div style={{ display: 'flex', marginTop: 'auto' }}>
+          <div>Score: {minPossibleScore}%</div>
+          <div style={{ marginLeft: 'auto' }}>
+            Max Score: {maxPossibleScore}%
+          </div>
+        </div>
         <div className='lower-progress-bar'>
           <div
             className='min-score'

@@ -36,7 +36,6 @@
   border: solid;
   border-width: 1px;
   display: flex;
-  margin-top: auto;
   align-items: stretch;
   overflow: hidden;
 }
