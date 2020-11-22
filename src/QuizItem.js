@@ -40,11 +40,15 @@ class QuizItem extends React.Component {
           starSpacing='1px'
         />
         <div className='question'>{question}</div>
-        { answersList.map((value) => (
-          <button key={value.data} onClick={() => this.handleAnswerClick(value)}>
-            {decodeURIComponent(value.data)}
-          </button>
-        ))}
+        <div className='button-flex'>
+          { answersList.map((value) => (
+            <div key={value.data} className='button-wrapper'>
+              <button className='button' onClick={() => this.handleAnswerClick(value)}>
+                {decodeURIComponent(value.data)}
+              </button>
+            </div>
+          ))}
+        </div>
         <div className='result-message'>
           {this.state.completed && this.state.correct && <b>Correct!</b>}
           {this.state.completed && !this.state.correct && <b>Sorry!</b>}

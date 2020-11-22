@@ -8,6 +8,27 @@
   margin-bottom: 30px;
 }
 
+.button-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.button-wrapper {
+  width: 50%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  font-size: 16px
+}
+
+.button {
+  border-radius: 8px;
+  border-width: 1px;
+  min-width: 200px;
+  height: 32px;
+}
+
 .result-message {
   align-self: center;
   margin-top: 32px;
