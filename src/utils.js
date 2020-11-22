@@ -1,4 +1,5 @@
 export {
+  shuffleAnswers,
   getAnswersList,
   getPercentageValue
 }
@@ -20,4 +21,10 @@ function getAnswersList (questionJson) {
   const incorrectAnsList = questionJson.incorrect_answers
   const incorrectAns = incorrectAnsList.map(incorrectDict)
   return [correctAns, ...incorrectAns]
+}
+
+function shuffleAnswers (answers, order) {
+  const answerObjects = { ...answers }
+  const orderedAnswers = order.map(i => answerObjects[i])
+  return orderedAnswers.filter(Boolean)
 }

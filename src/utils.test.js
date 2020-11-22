@@ -1,4 +1,5 @@
 import {
+  shuffleAnswers,
   getAnswersList,
   getPercentageValue
 } from './utils'
@@ -30,5 +31,19 @@ describe('getAnswersList function', () => {
       { data: 'd', correct: false }
     ]
     expect(getAnswersList(questionJson)).toEqual(expectedList)
+  })
+})
+
+describe('shuffleAnswers function', () => {
+  it('shuffles list according to order given', () => {
+    const answers = ['a', 'b', 'c']
+    const order = [2, 0, 1]
+    expect(shuffleAnswers(answers, order)).toEqual(['c', 'a', 'b'])
+  })
+
+  it('shuffle removes undefined values', () => {
+    const answers = ['a', 'b']
+    const order = [3, 1, 2, 0]
+    expect(shuffleAnswers(answers, order)).toEqual(['b', 'a'])
   })
 })

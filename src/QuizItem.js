@@ -1,9 +1,13 @@
 import React from 'react'
 import StarRatings from 'react-star-ratings'
+import shuffle from 'lodash/shuffle'
 
 import './QuizItem.css'
 
-import { getAnswersList } from './utils'
+import {
+  shuffleAnswers,
+  getAnswersList
+} from './utils'
 
 const RATING_MAP = {
   easy: 1,
@@ -15,8 +19,15 @@ class QuizItem extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      answerOrder: shuffle([0, 1, 2, 3]),
       completed: false,
       correct: false
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    if (prevProps.questionJson !== this.props.questionJson) {
+      this.setState({ answerOrder: shuffle([0, 1, 2, 3]) })
     }
   }
 
@@ -41,7 +52,7 @@ class QuizItem extends React.Component {
         />
         <div className='question'>{question}</div>
         <div className='button-flex'>
-          { answersList.map((value) => (
+          { shuffleAnswers(answersList, this.state.answerOrder).map((value) => (
             <div key={value.data} className='button-wrapper'>
               <button className='button' onClick={() => this.handleAnswerClick(value)}>
                 {decodeURIComponent(value.data)}
