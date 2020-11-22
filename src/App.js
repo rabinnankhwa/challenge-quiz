@@ -3,6 +3,7 @@ import QuizItem from './QuizItem'
 import './App.css'
 
 import questions from './questions'
+import { getPercentageValue } from './utils'
 
 class App extends React.Component {
   constructor () {
@@ -15,10 +16,17 @@ class App extends React.Component {
   }
 
   render () {
+    const {
+      questionIndex
+    } = this.state
+
     return (<div className='App'>
-      <div>Question {this.state.questionIndex + 1} of {questions.length}</div>
+      <div className='upper-progress-bar'>
+        <div style={{ width: getPercentageValue(questionIndex, questions.length) + '%' }} />
+      </div>
+      <div>Question {questionIndex + 1} of {questions.length}</div>
       <QuizItem
-        questionJson={questions[this.state.questionIndex]}
+        questionJson={questions[questionIndex]}
         handleNext={() => this.handleNext()}
       />
     </div>)
