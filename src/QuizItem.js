@@ -31,7 +31,11 @@ class QuizItem extends React.Component {
           {this.state.completed && !this.state.correct && <b>Sorry!</b>}
         </div>
         <div>
-          {this.state.completed && <button>Next Question</button>}
+          {this.state.completed &&
+            <button onClick={() => { this.props.handleNext(); this.setState({ completed: false }) }} >
+              Next Question
+            </button>
+          }
         </div>
       </>
     )
