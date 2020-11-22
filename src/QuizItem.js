@@ -3,6 +3,7 @@ import StarRatings from 'react-star-ratings'
 import shuffle from 'lodash/shuffle'
 
 import './QuizItem.css'
+import Button from './Button'
 
 import {
   shuffleAnswers,
@@ -56,19 +57,19 @@ class QuizItem extends React.Component {
         <div className='button-flex'>
           { type === 'multiple' &&
             shuffleAnswers(answersList, this.state.answerOrder).map((value) => (
-              <div key={value.data} className='button-wrapper'>
-                <button className='button' onClick={() => this.handleAnswerClick(value)}>
-                  {decodeURIComponent(value.data)}
-                </button>
-              </div>
+              <Button
+                key={value.data}
+                value={value}
+                handleAnswerClick={(value) => this.handleAnswerClick(value)}
+              />
             ))}
           { type === 'boolean' &&
             orderBooleanAnswers(answersList).map((value) => (
-              <div key={value.data} className='button-wrapper'>
-                <button className='button' onClick={() => this.handleAnswerClick(value)}>
-                  {decodeURIComponent(value.data)}
-                </button>
-              </div>
+              <Button
+                key={value.data}
+                value={value}
+                handleAnswerClick={(value) => this.handleAnswerClick(value)}
+              />
             ))}
         </div>
         <div className='result-message'>
