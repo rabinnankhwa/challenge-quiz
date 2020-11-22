@@ -42,25 +42,27 @@ class App extends React.Component {
       <div className='upper-progress-bar'>
         <div style={{ width: completedPercent + '%' }} />
       </div>
-      <div>Question {questionIndex + 1} of {questions.length}</div>
-      <QuizItem
-        questionJson={questions[questionIndex]}
-        handleNext={() => this.handleNext()}
-        handleCorrect={() => this.handleCorrect()}
-      />
-      <div className='lower-progress-bar'>
-        <div
-          className='min-score'
-          style={{ width: minPossibleScore + '%' }}
+      <div className='question-body'>
+        <div>Question {questionIndex + 1} of {questions.length}</div>
+        <QuizItem
+          questionJson={questions[questionIndex]}
+          handleNext={() => this.handleNext()}
+          handleCorrect={() => this.handleCorrect()}
         />
-        <div
-          className='prob-score'
-          style={{ width: (probableScore - minPossibleScore) + '%' }}
-        />
-        <div
-          className='max-score'
-          style={{ width: (maxPossibleScore - probableScore) + '%' }}
-        />
+        <div className='lower-progress-bar'>
+          <div
+            className='min-score'
+            style={{ width: minPossibleScore + '%' }}
+          />
+          <div
+            className='prob-score'
+            style={{ width: (probableScore - minPossibleScore) + '%' }}
+          />
+          <div
+            className='max-score'
+            style={{ width: (maxPossibleScore - probableScore) + '%' }}
+          />
+        </div>
       </div>
     </div>)
   }
