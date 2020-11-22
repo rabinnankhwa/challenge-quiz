@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './QuizItem.css'
+
 class QuizItem extends React.Component {
   constructor (props) {
     super(props)
@@ -16,12 +18,13 @@ class QuizItem extends React.Component {
 
   render () {
     const { questionJson } = this.props
+    const category = decodeURIComponent(questionJson.category)
     const question = decodeURIComponent(questionJson.question)
     const correctAns = decodeURIComponent(questionJson.correct_answer)
     const answers = questionJson.incorrect_answers.map(ans => decodeURIComponent(ans))
     return (
       <>
-        <div>Entertainment: Board Games</div>
+        <div className='category'>{category}</div>
         <div>{question}</div>
         <button onClick={() => this.handleAnswerClick(true)}>{correctAns}</button>
         <button onClick={() => this.handleAnswerClick(false)}>{answers[0]}</button>
