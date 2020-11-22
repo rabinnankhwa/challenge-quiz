@@ -42,6 +42,7 @@ class App extends React.Component {
     if (!dataLoaded) return (<div>Loading...</div>)
 
     const { questions } = this
+    if (questionIndex >= questions.length) return (<div>Quiz Completed!</div>)
 
     const actualScore = correctCount
     const completed = questionIndex + 1
