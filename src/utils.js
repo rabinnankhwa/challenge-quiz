@@ -1,4 +1,5 @@
 export {
+  getButtonClass,
   shuffleAnswers,
   orderBooleanAnswers,
   getAnswersList,
@@ -33,4 +34,11 @@ function shuffleAnswers (answers, order) {
 function orderBooleanAnswers (answers) {
   const compare = (a, b) => { return a.data === 'True' ? -1 : 1 }
   return answers.sort(compare)
+}
+
+function getButtonClass (completed, correct, clicked) {
+  if (!completed) return ''
+  if (correct) return 'button-correct'
+  if (clicked) return 'button-incorrect'
+  return ''
 }

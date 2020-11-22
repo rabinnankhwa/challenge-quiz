@@ -20,3 +20,8 @@
   border: solid;
   border-width: 1px;
 }
+
+.button-correct {
+  background-color: black;
+  color: white;
+}

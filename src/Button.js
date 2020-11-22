@@ -2,6 +2,8 @@ import React from 'react'
 
 import './Button.css'
 
+import { getButtonClass } from './utils'
+
 class Button extends React.Component {
   constructor (props) {
     super(props)
@@ -25,11 +27,12 @@ class Button extends React.Component {
     const { value, completed } = this.props
     const { clicked } = this.state
     const buttonText = decodeURIComponent(value.data)
+    const buttonClass = getButtonClass(completed, value.correct, clicked)
     return (
       <div className='button-wrapper'>
         <button
           disabled={completed}
-          className={`button ${clicked ? 'button-incorrect' : ''}`}
+          className={`button ${buttonClass}`}
           onClick={() => this.handleButtonClick(value)}
         >
           {buttonText}

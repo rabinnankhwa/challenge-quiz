@@ -1,4 +1,5 @@
 import {
+  getButtonClass,
   orderBooleanAnswers,
   shuffleAnswers,
   getAnswersList,
@@ -58,5 +59,23 @@ describe('orderBooleanAnswers function', () => {
   it('orders boolean answers', () => {
     const answers = [{ data: 'False', correct: true }, { data: 'True', correct: false }]
     expect(orderBooleanAnswers([...answers])).toEqual([answers[1], answers[0]])
+  })
+})
+
+describe('getButtonClass function', () => {
+  it('returns empty string class when not complete', () => {
+    expect(getButtonClass(false, 'a', 'b')).toEqual('')
+  })
+
+  it('returns "button-correct" class when complete and correct', () => {
+    expect(getButtonClass(true, true, 'b')).toEqual('button-correct')
+  })
+
+  it('returns "button-correct" class when complete, incorrect and clicked', () => {
+    expect(getButtonClass(true, false, true)).toEqual('button-incorrect')
+  })
+
+  it('returns empty string class when complete, incorrect and not clicked', () => {
+    expect(getButtonClass(true, false, false)).toEqual('')
   })
 })
