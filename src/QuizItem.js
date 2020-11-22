@@ -38,7 +38,7 @@ class QuizItem extends React.Component {
           starRatedColor='black'
           starSpacing='1px'
         />
-        <div>{question}</div>
+        <div className='question'>{question}</div>
         <button onClick={() => this.handleAnswerClick(true)}>{correctAns}</button>
         <button onClick={() => this.handleAnswerClick(false)}>{answers[0]}</button>
         <button onClick={() => this.handleAnswerClick(false)}>{answers[1]}</button>
