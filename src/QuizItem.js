@@ -10,6 +10,7 @@ class QuizItem extends React.Component {
   }
 
   handleAnswerClick (correctValue) {
+    if (correctValue) this.props.handleCorrect()
     this.setState({ completed: true, correct: correctValue })
   }
 

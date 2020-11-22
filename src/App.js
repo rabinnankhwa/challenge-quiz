@@ -8,7 +8,14 @@ import { getPercentageValue } from './utils'
 class App extends React.Component {
   constructor () {
     super()
-    this.state = { questionIndex: 0 }
+    this.state = {
+      correctCount: 0,
+      questionIndex: 0
+    }
+  }
+
+  handleCorrect () {
+    this.setState({ correctCount: this.state.correctCount + 1 })
   }
 
   handleNext () {
@@ -17,18 +24,44 @@ class App extends React.Component {
 
   render () {
     const {
+      correctCount,
       questionIndex
     } = this.state
 
+    const actualScore = correctCount
+    const completed = questionIndex + 1
+    const incorrectAnswers = completed - actualScore
+    const maximumScore = questions.length - incorrectAnswers
+
+    const completedPercent = getPercentageValue(completed, questions.length)
+    const minPossibleScore = getPercentageValue(actualScore, questions.length)
+    const probableScore = getPercentageValue(actualScore, completed)
+    const maxPossibleScore = getPercentageValue(maximumScore, questions.length)
+
     return (<div className='App'>
       <div className='upper-progress-bar'>
-        <div style={{ width: getPercentageValue(questionIndex, questions.length) + '%' }} />
+        <div style={{ width: completedPercent + '%' }} />
       </div>
       <div>Question {questionIndex + 1} of {questions.length}</div>
       <QuizItem
         questionJson={questions[questionIndex]}
         handleNext={() => this.handleNext()}
+        handleCorrect={() => this.handleCorrect()}
       />
+      <div className='lower-progress-bar'>
+        <div
+          className='min-score'
+          style={{ width: minPossibleScore + '%' }}
+        />
+        <div
+          className='prob-score'
+          style={{ width: (probableScore - minPossibleScore) + '%' }}
+        />
+        <div
+          className='max-score'
+          style={{ width: (maxPossibleScore - probableScore) + '%' }}
+        />
+      </div>
     </div>)
   }
 }
