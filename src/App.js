@@ -2,16 +2,27 @@ import React from 'react'
 import QuizItem from './QuizItem'
 import './App.css'
 
-import questions from './questions'
+import allQuestions from './questions'
 import { getPercentageValue } from './utils'
+
+function getQuestions () {
+  return allQuestions
+}
 
 class App extends React.Component {
   constructor () {
     super()
     this.state = {
+      dataLoaded: false,
       correctCount: 0,
       questionIndex: 0
     }
+    this.questions = []
+  }
+
+  componentDidMount () {
+    this.questions = getQuestions()
+    this.setState({ dataLoaded: true })
   }
 
   handleCorrect () {
@@ -24,9 +35,13 @@ class App extends React.Component {
 
   render () {
     const {
+      dataLoaded,
       correctCount,
       questionIndex
     } = this.state
+    if (!dataLoaded) return (<div>Loading...</div>)
+
+    const { questions } = this
 
     const actualScore = correctCount
     const completed = questionIndex + 1
