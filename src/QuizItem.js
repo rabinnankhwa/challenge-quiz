@@ -40,6 +40,7 @@ class QuizItem extends React.Component {
 
   render () {
     const { questionJson } = this.props
+    const { completed } = this.state
     const { type } = questionJson
     const category = decodeURIComponent(questionJson.category)
     const question = decodeURIComponent(questionJson.question)
@@ -60,6 +61,7 @@ class QuizItem extends React.Component {
               <Button
                 key={value.data}
                 value={value}
+                completed={completed}
                 handleAnswerClick={(value) => this.handleAnswerClick(value)}
               />
             ))}
@@ -68,6 +70,7 @@ class QuizItem extends React.Component {
               <Button
                 key={value.data}
                 value={value}
+                completed={completed}
                 handleAnswerClick={(value) => this.handleAnswerClick(value)}
               />
             ))}

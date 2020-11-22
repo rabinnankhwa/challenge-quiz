@@ -4,11 +4,12 @@ import './Button.css'
 
 class Button extends React.Component {
   render () {
-    const { value, handleAnswerClick } = this.props
+    const { value, completed, handleAnswerClick } = this.props
     const buttonText = decodeURIComponent(value.data)
     return (
       <div className='button-wrapper'>
         <button
+          disabled={completed}
           className='button'
           onClick={() => handleAnswerClick(value)}
         >
