@@ -28,6 +28,13 @@
   flex: 1;
 }
 
+.question-number {
+  font-weight: bold;
+  margin: 0;
+  font-size: 2em;
+  color: #4A4A4A;
+}
+
 .lower-progress-bar {
   width: 100%;
   height: 16px;

@@ -43,7 +43,9 @@ class App extends React.Component {
         <div style={{ width: completedPercent + '%' }} />
       </div>
       <div className='question-body'>
-        <div>Question {questionIndex + 1} of {questions.length}</div>
+        <div className='question-number'>
+          Question {questionIndex + 1} of {questions.length}
+        </div>
         <QuizItem
           questionJson={questions[questionIndex]}
           handleNext={() => this.handleNext()}
