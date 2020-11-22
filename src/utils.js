@@ -1,5 +1,6 @@
 export {
   shuffleAnswers,
+  orderBooleanAnswers,
   getAnswersList,
   getPercentageValue
 }
@@ -27,4 +28,9 @@ function shuffleAnswers (answers, order) {
   const answerObjects = { ...answers }
   const orderedAnswers = order.map(i => answerObjects[i])
   return orderedAnswers.filter(Boolean)
+}
+
+function orderBooleanAnswers (answers) {
+  const compare = (a, b) => { return a.data === 'True' ? -1 : 1 }
+  return answers.sort(compare)
 }

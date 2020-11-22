@@ -1,4 +1,5 @@
 import {
+  orderBooleanAnswers,
   shuffleAnswers,
   getAnswersList,
   getPercentageValue
@@ -45,5 +46,17 @@ describe('shuffleAnswers function', () => {
     const answers = ['a', 'b']
     const order = [3, 1, 2, 0]
     expect(shuffleAnswers(answers, order)).toEqual(['b', 'a'])
+  })
+})
+
+describe('orderBooleanAnswers function', () => {
+  it('orders boolean answers', () => {
+    const answers = [{ data: 'True', correct: true }, { data: 'False', correct: false }]
+    expect(orderBooleanAnswers([...answers])).toEqual(answers)
+  })
+
+  it('orders boolean answers', () => {
+    const answers = [{ data: 'False', correct: true }, { data: 'True', correct: false }]
+    expect(orderBooleanAnswers([...answers])).toEqual([answers[1], answers[0]])
   })
 })

@@ -6,6 +6,7 @@ import './QuizItem.css'
 
 import {
   shuffleAnswers,
+  orderBooleanAnswers,
   getAnswersList
 } from './utils'
 
@@ -38,6 +39,7 @@ class QuizItem extends React.Component {
 
   render () {
     const { questionJson } = this.props
+    const { type } = questionJson
     const category = decodeURIComponent(questionJson.category)
     const question = decodeURIComponent(questionJson.question)
     const answersList = getAnswersList(questionJson)
@@ -52,13 +54,22 @@ class QuizItem extends React.Component {
         />
         <div className='question'>{question}</div>
         <div className='button-flex'>
-          { shuffleAnswers(answersList, this.state.answerOrder).map((value) => (
-            <div key={value.data} className='button-wrapper'>
-              <button className='button' onClick={() => this.handleAnswerClick(value)}>
-                {decodeURIComponent(value.data)}
-              </button>
-            </div>
-          ))}
+          { type === 'multiple' &&
+            shuffleAnswers(answersList, this.state.answerOrder).map((value) => (
+              <div key={value.data} className='button-wrapper'>
+                <button className='button' onClick={() => this.handleAnswerClick(value)}>
+                  {decodeURIComponent(value.data)}
+                </button>
+              </div>
+            ))}
+          { type === 'boolean' &&
+            orderBooleanAnswers(answersList).map((value) => (
+              <div key={value.data} className='button-wrapper'>
+                <button className='button' onClick={() => this.handleAnswerClick(value)}>
+                  {decodeURIComponent(value.data)}
+                </button>
+              </div>
+            ))}
         </div>
         <div className='result-message'>
           {this.state.completed && this.state.correct && <b>Correct!</b>}
