@@ -14,26 +14,26 @@ class Button extends React.Component {
 
   handleButtonClick () {
     this.setState({ clicked: true })
-    this.props.handleAnswerClick(this.props.value)
+    this.props.handleAnswerClick(this.props.correct)
   }
 
   componentDidUpdate (prevProps) {
-    if (prevProps.value.data !== this.props.value.data) {
+    if (prevProps.data !== this.props.data) {
       this.setState({ clicked: false })
     }
   }
 
   render () {
-    const { value, completed } = this.props
+    const { data, correct, completed } = this.props
     const { clicked } = this.state
-    const buttonText = decodeURIComponent(value.data)
-    const buttonClass = getButtonClass(completed, value.correct, clicked)
+    const buttonText = decodeURIComponent(data)
+    const buttonClass = getButtonClass(completed, correct, clicked)
     return (
       <div className='button-wrapper'>
         <button
           disabled={completed}
           className={`button ${buttonClass}`}
-          onClick={() => this.handleButtonClick(value)}
+          onClick={() => this.handleButtonClick()}
         >
           {buttonText}
         </button>

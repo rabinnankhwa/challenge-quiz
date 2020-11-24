@@ -33,9 +33,9 @@ class QuizItem extends React.Component {
     }
   }
 
-  handleAnswerClick (value) {
-    this.props.handleAnswer(value)
-    this.setState({ completed: true, correct: value.correct })
+  handleAnswerClick (correct) {
+    this.props.handleAnswer(correct)
+    this.setState({ completed: true, correct })
   }
 
   render () {
@@ -60,7 +60,8 @@ class QuizItem extends React.Component {
             shuffleAnswers(answersList, this.state.answerOrder).map((value) => (
               <Button
                 key={value.data}
-                value={value}
+                data={value.data}
+                correct={value.correct}
                 completed={completed}
                 handleAnswerClick={(value) => this.handleAnswerClick(value)}
               />
@@ -69,7 +70,8 @@ class QuizItem extends React.Component {
             orderBooleanAnswers(answersList).map((value) => (
               <Button
                 key={value.data}
-                value={value}
+                data={value.data}
+                correct={value.correct}
                 completed={completed}
                 handleAnswerClick={(value) => this.handleAnswerClick(value)}
               />

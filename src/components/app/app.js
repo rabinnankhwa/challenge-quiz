@@ -26,9 +26,9 @@ class App extends React.Component {
     this.setState({ dataLoaded: true })
   }
 
-  handleAnswer (value) {
+  handleAnswer (correct) {
     this.setState({
-      correctCount: this.state.correctCount + value.correct,
+      correctCount: this.state.correctCount + correct,
       currentCompleted: true
     })
   }
