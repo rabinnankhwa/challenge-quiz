@@ -4,6 +4,7 @@ import './app.css'
 
 import allQuestions from '../../questions'
 import { getPercentageValue } from '../../utils/utils'
+import Restart from '../restart/restart'
 
 function getQuestions () {
   return allQuestions
@@ -40,6 +41,14 @@ class App extends React.Component {
     })
   }
 
+  handleRestart () {
+    this.setState({
+      currentCompleted: false,
+      correctCount: 0,
+      questionIndex: 0
+    })
+  }
+
   render () {
     const {
       dataLoaded,
@@ -50,7 +59,6 @@ class App extends React.Component {
     if (!dataLoaded) return (<div>Loading...</div>)
 
     const { questions } = this
-    if (questionIndex >= questions.length) return (<div>Quiz Completed!</div>)
 
     const actualScore = correctCount
     const completed = questionIndex + currentCompleted
@@ -61,6 +69,13 @@ class App extends React.Component {
     const minPossibleScore = getPercentageValue(actualScore, questions.length)
     const probableScore = getPercentageValue(actualScore, completed)
     const maxPossibleScore = getPercentageValue(maximumScore, questions.length)
+
+    if (questionIndex >= questions.length) {
+      return (<Restart
+        score={minPossibleScore}
+        handleRestart={() => this.handleRestart()}
+      />)
+    }
 
     return (<div className='App'>
       <div className='upper-progress-bar'>
