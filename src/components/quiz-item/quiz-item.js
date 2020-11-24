@@ -2,14 +2,14 @@ import React from 'react'
 import StarRatings from 'react-star-ratings'
 import shuffle from 'lodash/shuffle'
 
-import './QuizItem.css'
-import Button from './Button'
+import './quiz-item.css'
+import Button from '../button/button'
 
 import {
   shuffleAnswers,
   orderBooleanAnswers,
   getAnswersList
-} from './utils'
+} from '../../utils/utils'
 
 const RATING_MAP = {
   easy: 1,

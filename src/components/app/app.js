@@ -1,9 +1,9 @@
 import React from 'react'
-import QuizItem from './QuizItem'
-import './App.css'
+import QuizItem from '../quiz-item/quiz-item'
+import './app.css'
 
-import allQuestions from './questions'
-import { getPercentageValue } from './utils'
+import allQuestions from '../../questions'
+import { getPercentageValue } from '../../utils/utils'
 
 function getQuestions () {
   return allQuestions

@@ -1,8 +1,8 @@
 import React from 'react'
 
-import './Button.css'
+import './button.css'
 
-import { getButtonClass } from './utils'
+import { getButtonClass } from '../../utils/utils'
 
 class Button extends React.Component {
   constructor (props) {

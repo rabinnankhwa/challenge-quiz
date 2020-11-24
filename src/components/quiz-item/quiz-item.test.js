@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import QuizItem from './QuizItem'
+import QuizItem from './quiz-item'
 
 it('renders without crashing', () => { // eslint-disable-line
   const div = document.createElement('div')
