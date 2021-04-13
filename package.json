@@ -19,7 +19,9 @@
     "extends": "react-app"
   },
   "standard": {
-    "env": [ "jest" ]
+    "env": [
+      "jest"
+    ]
   },
   "browserslist": {
     "production": [
@@ -34,6 +36,7 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^7.1.0",
     "standard": "^12.0.1"
   }
 }
