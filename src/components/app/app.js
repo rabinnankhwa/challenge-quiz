@@ -91,8 +91,8 @@ class App extends React.Component {
           handleAnswer={(value) => this.handleAnswer(value)}
         />
         <div style={{ display: 'flex', marginTop: 'auto' }}>
-          <div>Score: {minPossibleScore}%</div>
-          <div style={{ marginLeft: 'auto' }}>
+          <div data-cy='minPossibleScore'>Score: {minPossibleScore}%</div>
+          <div data-cy='maxPossibleScore' style={{ marginLeft: 'auto' }}>
             Max Score: {maxPossibleScore}%
           </div>
         </div>

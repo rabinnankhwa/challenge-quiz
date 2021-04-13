@@ -33,6 +33,7 @@ class Button extends React.Component {
         <button
           disabled={completed}
           className={`button ${buttonClass}`}
+          data-cy={correct ? 'correct' : 'incorrect'}
           onClick={() => this.handleButtonClick()}
         >
           {buttonText}
