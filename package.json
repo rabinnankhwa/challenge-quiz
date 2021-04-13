@@ -22,7 +22,14 @@
   },
   "standard": {
     "env": [
-      "jest"
+      "jest",
+      "es6",
+      "browser",
+      "mocha"
+    ],
+    "globals": [
+      "cy",
+      "Cypress"
     ]
   },
   "browserslist": {
